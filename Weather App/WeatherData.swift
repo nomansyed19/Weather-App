@@ -11,10 +11,15 @@ import Foundation
 struct WeatherData: Decodable {
     let name : String                                           // name of the city
     let main : Main
+    let weather: [Weather]
 }
 
 
 struct Main: Decodable {
     let temp: Double
+    
+}
+struct Weather: Decodable{
+    let description: String
     
 }
