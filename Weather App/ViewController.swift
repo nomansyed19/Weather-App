@@ -32,7 +32,6 @@ class ViewController: UIViewController, UITextFieldDelegate {
     
     // run this method after use pressed search button
     @IBAction func searchButtonPressed(_ sender: UIButton) {
-        print(searchTextField.text!)
         searchTextField.endEditing(true)    // close the keyBoard
         
     }
@@ -40,7 +39,6 @@ class ViewController: UIViewController, UITextFieldDelegate {
     // run this method after user presses search button on they keyboard
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         if(searchTextField.text != nil){    // if textfield is empty then print and close the keyboard
-            print(searchTextField.text!)
             searchTextField.endEditing(true)    // close the keyBoard
             return true;
         }

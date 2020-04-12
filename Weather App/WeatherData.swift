@@ -7,3 +7,14 @@
 //
 
 import Foundation
+
+struct WeatherData: Decodable {
+    let name : String                                           // name of the city
+    let main : Main
+}
+
+
+struct Main: Decodable {
+    let temp: Double
+    
+}
