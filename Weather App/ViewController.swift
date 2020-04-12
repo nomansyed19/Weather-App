@@ -8,7 +8,9 @@
 
 import UIKit
 
-class ViewController: UIViewController, UITextFieldDelegate {
+class ViewController: UIViewController, UITextFieldDelegate, WeatherManagerDelegate {
+    
+    
 
     @IBOutlet weak var searchTextField: UITextField!
     @IBOutlet weak var searchButton: UIButton!
@@ -25,7 +27,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        
+        weatherManager.delegate = self
         searchTextField.delegate = self
     }
 
@@ -52,10 +54,14 @@ class ViewController: UIViewController, UITextFieldDelegate {
         if let city = searchTextField.text {
             weatherManager.fetchWeather(cityName: city)
         }
-        
-        
-        
         searchTextField.text = "";      // clears the textbox after finished editing
+    }
+    
+    func didUpdateWeather(_ weatherManager: WeatherManager, _ weather: WeatherModel) {
+        print(weather.temperatureString)
+    }
+    func didFailWithError(error: Error) {
+        print(error)
     }
     
 }

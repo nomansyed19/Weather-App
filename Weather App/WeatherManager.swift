@@ -10,19 +10,25 @@
 
 import UIKit
 
+protocol WeatherManagerDelegate {
+    func didUpdateWeather(_ weatherManager: WeatherManager,_ weather: WeatherModel)
+    func didFailWithError(error: Error)
+}
+
+
 class WeatherManager {
     // 1 .create a URL string
     let weatherURL = "https://api.openweathermap.org/data/2.5/weather?&appid=6876e585bc8035465fe53c1805fdf220&units=imperial"
-    
+    var delegate: WeatherManagerDelegate?
     
     // this method will fetch the weather
     func fetchWeather(cityName: String) {
         let urlString = "\(weatherURL)&q=\(cityName)"
-        performRequest(urlString: urlString)
+        performRequest(with: urlString)
     }
     
     // This method will perform a request// helper method for fetchWeather method. WIll take the actual city url and
-    func performRequest(urlString: String) {
+    func performRequest(with urlString: String) {
         
         if let url = URL(string: urlString){// create a url object // if the urlString is correct then run this block of code
             // create a URL session
@@ -32,11 +38,13 @@ class WeatherManager {
             // give session a task   // completion handler is a method ran while the session gets the data
             let task = session.dataTask(with: url) { (data, response, error) in
                 if (error != nil){  // if there is an error/// then print the error
-                    print(error!)
+                    self.delegate?.didFailWithError(error: error!)
                     return
                 }
                 if let safeData = data{
-                    self.parseJSON(weatherData: safeData)
+                    if let weather = self.parseJSON(safeData){         // weather now has swift object live data
+                        self.delegate?.didUpdateWeather(self,weather)           // delegate function
+                    }
                 }
             }
             // start the task
@@ -45,16 +53,23 @@ class WeatherManager {
         
     }
     
-    func parseJSON(weatherData: Data)  {
+    func parseJSON(_ weatherData: Data) -> WeatherModel? {
         let decoder = JSONDecoder()
         do {
             let decodedData = try decoder.decode(WeatherData.self, from: weatherData)
-            print(decodedData.main.temp)
-            print(decodedData.weather[0].description)
             
+            // gets the live data from the JSON
+            let id = decodedData.weather[0].id
+            let temp = decodedData.main.temp
+            let name = decodedData.name
+            // Store the live weather data into a structure in this case id,cityname,temp are being stored
+            // in the weatherModel object called weather,
+            let weather = WeatherModel(conditionID: id, cityName: name, temperature: temp)
+            return weather          // were returning this weather information object back to "data"
         }
         catch{
-            print(error)
+            delegate?.didFailWithError(error: error)
+            return nil
         }
     }
     
