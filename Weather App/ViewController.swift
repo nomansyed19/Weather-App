@@ -33,15 +33,30 @@ class ViewController: UIViewController, UITextFieldDelegate {
     
     // run this method after user presses search button on they keyboard
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        if(searchTextField.text != nil){    // if textfield is empty then print and close the keyboard
+        if(searchTextField.text != nil){    // if textfield has texts then print and close the keyboard
             print(searchTextField.text!)
             searchTextField.endEditing(true)    // close the keyBoard
-            return true;
+            return true;                        // then we allow user to press the search button on the keyboard
         }
-        else{
+        else{                                   // the textbox has no text inside it so we do not do not let them press the return button
             return false;
         }
     }
+    
+    func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
+        if (textField.text != nil){         // if the textField has text then let user end editing
+            return true;
+        }
+        else{
+            textField.placeholder = "Enter city"
+            return false;
+        }
+    }
+    
+    
+    
+    
+    
     
     // run this fuction after user is done editing text field
     func textFieldDidEndEditing(_ textField: UITextField) {
