@@ -6,4 +6,10 @@
 //  Copyright © 2020 Noman Syed. All rights reserved.
 //
 
-import Foundation
+import UIKit
+
+class WeatherManager {
+    // 1 .create a URL string
+    
+    
+}
