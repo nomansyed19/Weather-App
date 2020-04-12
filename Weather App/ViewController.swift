@@ -15,6 +15,12 @@ class ViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var cityLabel: UILabel!
     @IBOutlet weak var temperatureLabel: UILabel!
     
+    // create weatherManager object
+    var weatherManager = WeatherManager()
+    
+
+    
+    
     // This method runs right when the app is loaded
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -45,6 +51,12 @@ class ViewController: UIViewController, UITextFieldDelegate {
     
     // run this fuction after user is done editing text field
     func textFieldDidEndEditing(_ textField: UITextField) {
+        if let city = searchTextField.text {
+            weatherManager.fetchWeather(cityName: city)
+        }
+        
+        
+        
         searchTextField.text = "";      // clears the textbox after finished editing
     }
     
