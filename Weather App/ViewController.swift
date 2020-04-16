@@ -11,7 +11,8 @@ import UIKit
 class ViewController: UIViewController, UITextFieldDelegate, WeatherManagerDelegate {
     
     
-
+    @IBOutlet weak var conditionLabel: UILabel!
+    
     @IBOutlet weak var searchTextField: UITextField!
     @IBOutlet weak var searchButton: UIButton!
     @IBOutlet weak var cityLabel: UILabel!
@@ -63,6 +64,7 @@ class ViewController: UIViewController, UITextFieldDelegate, WeatherManagerDeleg
             self.cityLabel.text = weather.cityName
             self.temperatureLabel.text = weather.temperatureString
             self.conditionViewImage.image = UIImage(systemName: weather.conditionName)
+            self.conditionLabel.text = weather.description;
             print(weather.temperatureString)
             
         }

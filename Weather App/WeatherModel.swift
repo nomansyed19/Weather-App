@@ -12,7 +12,7 @@ struct WeatherModel {
     let conditionID: Int
     let cityName: String
     let temperature: Double
-
+    let description: String
     
     var temperatureString: String{
         return String(Int(temperature))

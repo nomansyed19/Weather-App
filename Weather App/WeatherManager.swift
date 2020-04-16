@@ -62,9 +62,10 @@ class WeatherManager {
             let id = decodedData.weather[0].id
             let temp = decodedData.main.temp
             let name = decodedData.name
+            let description = decodedData.weather[0].description
             // Store the live weather data into a structure in this case id,cityname,temp are being stored
             // in the weatherModel object called weather,
-            let weather = WeatherModel(conditionID: id, cityName: name, temperature: temp)
+            let weather = WeatherModel(conditionID: id, cityName: name, temperature: temp, description: description)
             return weather          // were returning this weather information object back to "data"
         }
         catch{

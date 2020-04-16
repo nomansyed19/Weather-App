@@ -71,12 +71,20 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Condition" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KLD-J3-wzy">
+                                <rect key="frame" x="37" y="259" width="117" height="34"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
                         <outlet property="cityLabel" destination="AUG-nM-2zO" id="Qhh-ed-oLK"/>
+                        <outlet property="conditionLabel" destination="KLD-J3-wzy" id="Rrn-0U-l9r"/>
                         <outlet property="conditionViewImage" destination="SAZ-UE-Mln" id="bQj-Gs-dBB"/>
                         <outlet property="searchButton" destination="fsO-R9-qZ6" id="DQj-4G-x6F"/>
                         <outlet property="searchTextField" destination="Fm4-SV-5F0" id="uYh-cu-u6Y"/>
@@ -93,7 +101,7 @@
         <image name="cloud" catalog="system" width="128" height="87"/>
         <image name="magnifyingglass" catalog="system" width="128" height="115"/>
         <namedColor name="searchBarColor">
-            <color red="0.73725490199999999" green="0.8862745098" blue="0.90196078430000004" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+            <color red="0.7369999885559082" green="0.88599997758865356" blue="0.90200001001358032" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
         </namedColor>
     </resources>
 </document>
