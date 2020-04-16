@@ -8,6 +8,8 @@
 
 import UIKit
 
+
+
 class ViewController: UIViewController, UITextFieldDelegate, WeatherManagerDelegate {
     
     
@@ -65,11 +67,21 @@ class ViewController: UIViewController, UITextFieldDelegate, WeatherManagerDeleg
             self.temperatureLabel.text = weather.temperatureString
             self.conditionViewImage.image = UIImage(systemName: weather.conditionName)
             self.conditionLabel.text = weather.description;
-            print(weather.temperatureString)
+            
             
         }
 
     }
+    
+    
+    
+    @IBAction func detailsButtonPressed(_ sender: UIButton) {
+        
+        self.performSegue(withIdentifier: "goToDetail", sender: self)
+    }
+    
+    
+    
     func didFailWithError(error: Error) {
         print(error)
     }
